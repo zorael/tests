@@ -1,0 +1,12 @@
+{
+	"authors": [
+		"JR"
+	],
+	"copyright": "Copyright © 2019, JR",
+	"dependencies": {
+		"requests": "~>1.0.7"
+	},
+	"description": "A minimal D application.",
+	"license": "proprietary",
+	"name": "hex"
+}
