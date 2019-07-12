@@ -1,0 +1,18 @@
+{
+    "name": "test",
+    "description": "Windows test bug",
+    "authors": [ "JR" ],
+    "copyright": "Copyright © 2019, JR",
+    "license": "MIT",
+    "targetType": "executable",
+    "mainSourceFile": "source/app.d",
+    "dflags": [ "-dip25", "-dip1008" ],
+    "configurations":
+    [
+        {
+            "name": "unittest",
+            "buildType": "unittest",
+            "dependencies": { "requests": "~>1.0.9" }
+        }
+    ]
+}
