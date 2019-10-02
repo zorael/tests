@@ -5,8 +5,6 @@ import kameloso.plugins.common;
 
 void register(ConnectService service)
 {
-    enum secsToWaitForCAP = 0;
-
     void dg()
     {
         service.negotiateNick();
@@ -15,7 +13,7 @@ void register(ConnectService service)
     import core.thread : Fiber;
 
     Fiber fiber = new Fiber(&dg);
-    service.delayFiber(fiber, secsToWaitForCAP);
+    service.delayFiber(fiber, 0);
 }
 
 

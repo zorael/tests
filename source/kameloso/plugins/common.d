@@ -25,7 +25,7 @@ mixin template IRCPluginImpl()
 {
     IRCPluginState privateState;
 
-    this(IRCPluginState) {}
+    this() {}
 
     void start()
     {
@@ -36,7 +36,6 @@ mixin template IRCPluginImpl()
     {
         return this.privateState;
     }
-
 }
 
 

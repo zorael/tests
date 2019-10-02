@@ -4,46 +4,25 @@ import kameloso.plugins.common;
 import lu.common;
 
 
-private:
-
-Next mainLoop(Kameloso instance)
+void main()
 {
-    Next next;
+    Kameloso instance;
 
-    foreach (plugin; instance.plugins)
-    {
-        plugin.handleTimedFibers();
-    }
-
-    return next;
-}
-
-
-void handleTimedFibers(IRCPlugin plugin)
-{
-    foreach (fiber; plugin.state.timedFibers)
-    {
-        fiber.call();
-    }
-}
-
-
-void startBot(Kameloso instance)
-{
+    instance.initPlugins();
     instance.startPlugins();
     instance.mainLoop();
 }
 
-public:
 
-
-int main()
+void mainLoop(Kameloso instance)
 {
-    Kameloso instance;
-    instance.initPlugins();
-    instance.startBot();
-
-    return 0;
+    foreach (plugin; instance.plugins)
+    {
+        foreach (fiber; plugin.state.timedFibers)
+        {
+            fiber.call();
+        }
+    }
 }
 
 
@@ -54,9 +33,7 @@ struct Kameloso
     void initPlugins()
     {
         import kameloso.plugins.connect : ConnectService;
-
-        IRCPluginState state;
-        plugins ~= new ConnectService(state);
+        plugins ~= new ConnectService;
     }
 
     void startPlugins()
