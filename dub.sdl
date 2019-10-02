@@ -1,0 +1,105 @@
+name "tests"
+description "Tests and bugs"
+authors "JR"
+copyright "Copyright © 2019, JR"
+license "MIT"
+targetType "executable"
+mainSourceFile "source/kameloso/main.d"
+dflags "-dip25" "-dip1008"
+libs "phobos2" platform="posix-dmd"
+
+x:ddoxTool "scod"
+
+sourcePaths "source"
+importPaths "source"
+
+dependency "lu" version="~>0.1.0"
+dependency "dialect" version="~>0.3.0"
+
+versions \
+    "WithAdminPlugin" \
+    "WithAutomodePlugin" \
+    "WithBashQuotesPlugin" \
+    "WithChanQueriesService" \
+    "WithChatbotPlugin" \
+    "WithConnectService" \
+    "WithCTCPService" \
+    "WithHelpPlugin" \
+    "WithNotesPlugin" \
+    "WithOnelinersPlugin" \
+    "WithPersistenceService" \
+    "WithPipelinePlugin" \
+    "WithPrinterPlugin" \
+    "WithQuotesPlugin" \
+    "WithSedReplacePlugin" \
+    "WithSeenPlugin" \
+    "WithWebtitlesPlugin"
+
+configuration "posix" {
+    platforms "posix"
+    versions "WithPlugins" "Colours" "Web"
+    dependency "requests" version="~>1.0.9"
+    dependency "arsd-official:dom" version="~>4.0.3"
+}
+
+configuration "windows" {
+    platforms "windows"
+    versions "WithPlugins" "Colours" "Web"
+    dependency "requests" version="~>1.0.9"
+dependency "arsd-official:dom" version="~>4.0.3"
+}
+
+configuration "twitch" {
+    versions "WithPlugins" "Colours" "Web" "TwitchSupport" "WithTwitchBotPlugin"
+    dependency "requests" version="~>1.0.9"
+    dependency "arsd-official:dom" version="~>4.0.3"
+subConfiguration "dialect" "twitch"
+}
+
+configuration "dev" {
+    versions "WithPlugins" "Colours" "Web" "TwitchSupport" "WithTwitchBotPlugin" \
+        "TwitchWarnings" "OmniscientAdmin" "PrintStacktraces" "ExplainReplay" \
+        "ProfileGC" "AssertsGeneration"
+    dependency "requests" version="~>1.0.9"
+    dependency "arsd-official:dom" version="~>4.0.3"
+    subConfiguration "dialect" "dev"
+}
+
+configuration "vanilla" {
+    versions "WithPlugins"
+}
+
+configuration "colours" {
+    versions "WithPlugins" "Colours"
+}
+
+configuration "web" {
+    versions "WithPlugins" "Web"
+    dependency "requests" version="~>1.0.9"
+    dependency "arsd-official:dom" version="~>4.0.3"
+}
+
+configuration "full" {
+    versions "WithPlugins" "Colours" "Web" "TwitchSupport"
+    dependency "requests" version="~>1.0.9"
+    dependency "arsd-official:dom" version="~>4.0.3"
+    subConfiguration "dialect" "twitch"
+}
+
+configuration "pluginless" {
+    versions "Colours"
+}
+
+configuration "pluginless-vanilla" {
+    // Mustn't be empty
+    targetType "executable"
+}
+
+configuration "unittest" {
+    versions "WithPlugins" "Colours" "Web" "TwitchSupport" "WithTwitchBotPlugin" \
+        "TwitchWarnings" "OmniscientAdmin" "PrintStacktraces" "ExplainReplay" \
+        "ProfileGC" "AssertsGeneration"
+    dependency "requests" version="~>1.0.9"
+    dependency "arsd-official:dom" version="~>4.0.3"
+    subConfiguration "dialect" "dev"
+}
