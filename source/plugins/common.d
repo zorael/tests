@@ -1,4 +1,4 @@
-module kameloso.plugins.common;
+module tests.plugins.common;
 
 import dialect;
 import core.thread : Fiber;

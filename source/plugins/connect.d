@@ -1,6 +1,6 @@
-module kameloso.plugins.connect;
+module tests.plugins.connect;
 
-import kameloso.plugins.common;
+import tests.plugins.common;
 
 
 void register(ConnectService service)
@@ -19,6 +19,7 @@ void register(ConnectService service)
 
 void negotiateNick(ConnectService service)
 {
+    assert(service !is null);
     raw(service.state, "USER %s 8 * :%s");
 }
 

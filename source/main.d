@@ -1,12 +1,11 @@
-module kameloso.main;
+module tests.main;
 
-import kameloso.plugins.common;
-import lu.common;
+import tests.plugins.common;
 
 
 void main()
 {
-    Kameloso instance;
+    Tests instance;
 
     instance.initPlugins();
     instance.startPlugins();
@@ -14,7 +13,7 @@ void main()
 }
 
 
-void mainLoop(Kameloso instance)
+void mainLoop(Tests instance)
 {
     foreach (plugin; instance.plugins)
     {
@@ -26,13 +25,13 @@ void mainLoop(Kameloso instance)
 }
 
 
-struct Kameloso
+struct Tests
 {
     IRCPlugin[] plugins;
 
     void initPlugins()
     {
-        import kameloso.plugins.connect : ConnectService;
+        import tests.plugins.connect : ConnectService;
         plugins ~= new ConnectService;
     }
 
