@@ -27,7 +27,5 @@ struct Kameloso
     {
         foreach (plugin; plugins)
             plugin.start;
-
     }
-
 }

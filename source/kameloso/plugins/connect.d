@@ -5,12 +5,10 @@ import kameloso.messaging;
 
 void register(ConnectService service)
 {
-
     enum secsToWaitForCAP = 0;
 
     void dg()
     {
-
         service.negotiateNick;
     }
 
@@ -22,7 +20,6 @@ void register(ConnectService service)
 
 void negotiateNick(ConnectService service)
 {
-
     raw(service.state, "USER %s 8 * :%s");
 }
 

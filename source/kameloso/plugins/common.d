@@ -6,11 +6,8 @@ import core.thread;
 
 interface IRCPlugin
 {
-
     ref inout(IRCPluginState) state() inout @nogc;
-
     void start();
-
 }
 
 struct IRCPluginState

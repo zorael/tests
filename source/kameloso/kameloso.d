@@ -10,7 +10,6 @@ private:
 
 Next mainLoop(Kameloso instance)
 {
-
     Next next;
 
     import std;
@@ -31,7 +30,6 @@ void handleTimedFibers(IRCPlugin plugin, long)
             fiber.call;
         catch (IRCParseException)
             string logtint;
-
 }
 
 void startBot(Attempt)(Kameloso instance, Attempt)
@@ -48,12 +46,9 @@ public:
 
 int initBot(string[])
 {
-
     struct Attempt
     {
-
         string[] customSettings;
-
         int retval;
     }
 
@@ -73,7 +68,7 @@ int initBot(string[])
     instance.startBot(attempt);
 
     if (abort)
-
         logger.logf(logtint);
+
     return attempt.retval;
 }

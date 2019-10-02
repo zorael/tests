@@ -7,7 +7,7 @@ string tryImportMixin(string module_, string alias_)
     return q{
         static if (__traits(compiles, __traits(identifier, %s.%s)))
 import %1$s;
-            
+
             import std;
     }.format(module_, alias_);
 }
