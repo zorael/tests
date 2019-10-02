@@ -1,6 +1,6 @@
 int main(string[] args)
 {
-    import kameloso.kameloso ;
+    import kameloso.kameloso;
 
     return initBot(args);
 }

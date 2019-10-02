@@ -1,10 +1,7 @@
-
 module kameloso.messaging;
 
-import kameloso.plugins.common ;
-void raw(IRCPluginState ,
-string )
+import kameloso.plugins.common;
+
+void raw(IRCPluginState, string)
 {
 }
-
-

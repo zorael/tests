@@ -1,4 +1,3 @@
-
 module kameloso.plugins;
 
 string tryImportMixin(string module_, string alias_)
@@ -13,6 +12,5 @@ import %1$s;
     }.format(module_, alias_);
 }
 
-
-    mixin(tryImportMixin("kameloso.plugins.connect", "ConnectService"));
-alias EnabledPlugins = AliasSeq!        ConnectService;
+mixin(tryImportMixin("kameloso.plugins.connect", "ConnectService"));
+alias EnabledPlugins = AliasSeq!ConnectService;
