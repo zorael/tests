@@ -1,8 +1,8 @@
 module kameloso.plugins.common;
 
 import dialect;
+import core.thread : Fiber;
 
-import core.thread;
 
 interface IRCPlugin
 {
@@ -10,31 +10,26 @@ interface IRCPlugin
     void start();
 }
 
+
 struct IRCPluginState
 {
-    import lu.common;
-    import std;
+    import lu.common : Labeled;
+    import std.traits : EnumMembers;
 
     Fiber[][EnumMembers!(IRCEvent.Type).length] awaitingFibers;
-
     Labeled!(Fiber, long)[] timedFibers;
-
 }
 
-template IRCPluginImpl()
+
+mixin template IRCPluginImpl()
 {
     IRCPluginState privateState;
 
-    this(IRCPluginState)
-    {
-    }
+    this(IRCPluginState) {}
 
     void start()
     {
-        import lu.traits;
-
-        static if (TakesParams!(.start, typeof(this)))
-            .start(this);
+        .start(this);
     }
 
     ref inout(IRCPluginState) state() inout @nogc
@@ -44,10 +39,11 @@ template IRCPluginImpl()
 
 }
 
+
 void delayFiber(IRCPlugin plugin, Fiber fiber, long)
 {
-    import lu.common;
-    import std;
+    import lu.common : labeled;
+    import std.datetime.systime : Clock;
 
     immutable time = Clock.currTime.toUnixTime;
     plugin.state.timedFibers ~= labeled(fiber, time);

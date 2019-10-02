@@ -1,7 +1,7 @@
 module kameloso.plugins.connect;
 
 import kameloso.plugins.common;
-import kameloso.messaging;
+
 
 void register(ConnectService service)
 {
@@ -9,26 +9,32 @@ void register(ConnectService service)
 
     void dg()
     {
-        service.negotiateNick;
+        service.negotiateNick();
     }
 
-    import core.thread;
+    import core.thread : Fiber;
 
     Fiber fiber = new Fiber(&dg);
     service.delayFiber(fiber, secsToWaitForCAP);
 }
+
 
 void negotiateNick(ConnectService service)
 {
     raw(service.state, "USER %s 8 * :%s");
 }
 
+
 void start(ConnectService service)
 {
     register(service);
 }
 
-class ConnectService : IRCPlugin
+
+final class ConnectService : IRCPlugin
 {
     mixin IRCPluginImpl;
 }
+
+
+void raw(IRCPluginState, string) {}
