@@ -1,0 +1,21 @@
+name "lowmem"
+description "A minimal D application."
+authors "JR"
+copyright "Copyright © 2020, JR"
+license "proprietary"
+targetType "executable"
+mainSourceFile "source/kameloso/main.d"
+
+sourcePaths "source"
+importPaths "source"
+
+dependency "lu" version="~>0.2.1"
+dependency "dialect" version="~>0.4.1"
+
+configuration "default" {
+   // Nothing
+}
+
+configuration "lowmem" {
+    dflags "-lowmem"
+}
